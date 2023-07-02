@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import model.entities.Reservation;
+import model.exceptions.DomainException;
 
 
 public class Program {
@@ -53,13 +54,17 @@ public class Program {
 		catch (ParseException e) {
 			System.out.println("Formato de data invalido");
 		}
-		catch (IllegalArgumentException e) {
+		catch (DomainException e) { // trocado para tratar a exceção.
 			System.out.println("Erro na reserva: " + e.getMessage());
 		}
-
+		
 		/*
-		 * Bloco removido.
+		 * O proximo catch faz com que o programa pare em vez de quebrar
+		 * por qualquer outro erro ainda não tratado.
 		 */
+		catch (RuntimeException e) {
+			System.out.println("Deu merda !!!");
+		}
 
 		sc.close();
 	}
